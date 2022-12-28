@@ -37,36 +37,36 @@ void Show2DArray(int[,] array)
     }
 }
 
-int[,] SortRowArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            int temp = 0;
-            for (int k = 0; k < array.GetLength(1) - 1; k++)
-            {
-                if (array[i, k] < array[i, k + 1])
-                {
-                    temp = array[i, k];
-                    array[i, k] = array[i, k + 1];
-                    array[i, k + 1] = temp;
-                }
-            }
-        }
-    }
-    return array;
-}
+// int[,] SortRowArray(int[,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             int temp = 0;
+//             for (int k = 0; k < array.GetLength(1) - 1; k++)
+//             {
+//                 if (array[i, k] < array[i, k + 1])
+//                 {
+//                     temp = array[i, k];
+//                     array[i, k] = array[i, k + 1];
+//                     array[i, k + 1] = temp;
+//                 }
+//             }
+//         }
+//     }
+//     return array;
+// }
 
-int rows = 5;
-int cols = 4;
-int min = 1;
-int max = 15;
-int[,] array = CreateRandom2DArray(rows, cols, min, max);
-Show2DArray(array);
-Console.WriteLine();
-int[,] sortedArray = SortRowArray(array);
-Show2DArray(sortedArray);
+// int rows = 5;
+// int cols = 4;
+// int min = 1;
+// int max = 15;
+// int[,] array = CreateRandom2DArray(rows, cols, min, max);
+// Show2DArray(array);
+// Console.WriteLine();
+// int[,] sortedArray = SortRowArray(array);
+// Show2DArray(sortedArray);
 
 
 /*
@@ -89,7 +89,38 @@ Show2DArray(sortedArray);
 */
 
 //===================== task 2 ===============================
+int FindArrayRowWithMinSum(int[,] array)
+{
+    int rowWithMinSum = 0;
+    int[] rowArray = new int[array.GetLength(0)];
+    Console.WriteLine("rows= " + array.GetLength(0));
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            rowArray[i] += array[i, j];
+        }
+        Console.WriteLine(rowArray[i]);
+    }
 
+    rowWithMinSum = rowArray[0];
+    for (int i = 1; i < rowArray.Length; i++)
+    {
+        if (rowWithMinSum > rowArray[i]) rowWithMinSum = rowArray[i];
+    }
+    return rowWithMinSum;
+}
+
+int rows = 5;
+int cols = 4;
+int min = 1;
+int max = 15;
+int[,] array = CreateRandom2DArray(rows, cols, min, max);
+Show2DArray(array);
+Console.WriteLine();
+int num = FindArrayRowWithMinSum(array);
+Console.WriteLine();
+Console.WriteLine(num);
 
 /*
 Задача 58: Задайте две матрицы. Напишите программу, 
