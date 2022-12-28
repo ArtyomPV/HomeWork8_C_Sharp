@@ -89,38 +89,38 @@ void Show2DArray(int[,] array)
 */
 
 //===================== task 2 ===============================
-int FindArrayRowWithMinSum(int[,] array)
-{
-    int rowWithMinSum = 0;
-    int[] rowArray = new int[array.GetLength(0)];
-    Console.WriteLine("rows= " + array.GetLength(0));
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            rowArray[i] += array[i, j];
-        }
-        Console.WriteLine(rowArray[i]);
-    }
+// int FindArrayRowWithMinSum(int[,] array)
+// {
+//     int rowWithMinSum = 0;
+//     int[] rowArray = new int[array.GetLength(0)];
+//     Console.WriteLine("rows= " + array.GetLength(0));
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             rowArray[i] += array[i, j];
+//         }
+//         Console.WriteLine(rowArray[i]);
+//     }
 
-    rowWithMinSum = rowArray[0];
-    for (int i = 1; i < rowArray.Length; i++)
-    {
-        if (rowWithMinSum > rowArray[i]) rowWithMinSum = rowArray[i];
-    }
-    return rowWithMinSum;
-}
+//     rowWithMinSum = rowArray[0];
+//     for (int i = 1; i < rowArray.Length; i++)
+//     {
+//         if (rowWithMinSum > rowArray[i]) rowWithMinSum = rowArray[i];
+//     }
+//     return rowWithMinSum;
+// }
 
-int rows = 5;
-int cols = 4;
-int min = 1;
-int max = 15;
-int[,] array = CreateRandom2DArray(rows, cols, min, max);
-Show2DArray(array);
-Console.WriteLine();
-int num = FindArrayRowWithMinSum(array);
-Console.WriteLine();
-Console.WriteLine(num);
+// int rows = 5;
+// int cols = 4;
+// int min = 1;
+// int max = 15;
+// int[,] array = CreateRandom2DArray(rows, cols, min, max);
+// Show2DArray(array);
+// Console.WriteLine();
+// int num = FindArrayRowWithMinSum(array);
+// Console.WriteLine();
+// Console.WriteLine(num);
 
 /*
 Задача 58: Задайте две матрицы. Напишите программу, 
@@ -134,7 +134,49 @@ Console.WriteLine(num);
 */
 
 //===================== task 3 ===============================
+int[,] Multiply2DArray(int[,] array1, int[,] array2)
+{
+    int[,] multiArray = new int[array1.GetLength(0), array1.GetLength(1)];
+    if(array1.GetLength(0)!=array1.GetLength(1) ||
+       array1.GetLength(0)!=array2.GetLength(0) || 
+       array1.GetLength(1)!=array2.GetLength(1)) Console.WriteLine("The sizes of array aree not correctted");
+       else {
+        for (int i = 0; i < multiArray.GetLength(0); i++)
+        {
+            for (int j = 0; j < multiArray.GetLength(1); j++)
+            {
+                multiArray[i,j] = array1[i,0] * array2[0,j];
+                for (int k = 1; k < multiArray.GetLength(1); k++)
+                {
+                    multiArray[i,j] += array1[i,k]*array2[k,j];
+                }
+            }
+        }
+       }
+       return multiArray;
+}
 
+Console.Write("Enter row's number of array 1: ");
+int rows1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter column's number of array 1: ");
+int cols1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter row's number of array 1: ");
+int rows2 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter column's number of array 1: ");
+int cols2 = Convert.ToInt32(Console.ReadLine());
+
+int min = 1;
+int max = 9;
+
+int[,] array1 = CreateRandom2DArray(rows1, cols1, min, max);
+int[,] array2 = CreateRandom2DArray(rows2, cols2, min, max);
+
+int[,] multy2DArray = Multiply2DArray(array1, array2);
+Show2DArray(array1);
+Console.WriteLine();
+Show2DArray(array2);
+Console.WriteLine();
+Show2DArray(multy2DArray);
 
 /*
 Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся
