@@ -12,30 +12,30 @@
 8 4 4 2
 */
 //===================== task 1 ===============================
-int[,] CreateRandom2DArray(int rows, int cols, int min, int max)
-{
-    int[,] array = new int[rows, cols];
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < cols; j++)
-        {
-            array[i, j] = new Random().Next(min, max);
-        }
-    }
-    return array;
-}
+// int[,] CreateRandom2DArray(int rows, int cols, int min, int max)
+// {
+//     int[,] array = new int[rows, cols];
+//     for (int i = 0; i < rows; i++)
+//     {
+//         for (int j = 0; j < cols; j++)
+//         {
+//             array[i, j] = new Random().Next(min, max);
+//         }
+//     }
+//     return array;
+// }
 
-void Show2DArray(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            Console.Write(array[i, j] + " ");
-        }
-        Console.WriteLine();
-    }
-}
+// void Show2DArray(int[,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             Console.Write(array[i, j] + " ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
 
 // int[,] SortRowArray(int[,] array)
 // {
@@ -134,49 +134,49 @@ void Show2DArray(int[,] array)
 */
 
 //===================== task 3 ===============================
-int[,] Multiply2DArray(int[,] array1, int[,] array2)
-{
-    int[,] multiArray = new int[array1.GetLength(0), array1.GetLength(1)];
-    if(array1.GetLength(0)!=array1.GetLength(1) ||
-       array1.GetLength(0)!=array2.GetLength(0) || 
-       array1.GetLength(1)!=array2.GetLength(1)) Console.WriteLine("The sizes of array aree not correctted");
-       else {
-        for (int i = 0; i < multiArray.GetLength(0); i++)
-        {
-            for (int j = 0; j < multiArray.GetLength(1); j++)
-            {
-                multiArray[i,j] = array1[i,0] * array2[0,j];
-                for (int k = 1; k < multiArray.GetLength(1); k++)
-                {
-                    multiArray[i,j] += array1[i,k]*array2[k,j];
-                }
-            }
-        }
-       }
-       return multiArray;
-}
+// int[,] Multiply2DArray(int[,] array1, int[,] array2)
+// {
+//     int[,] multiArray = new int[array1.GetLength(0), array1.GetLength(1)];
+//     if(array1.GetLength(0)!=array1.GetLength(1) ||
+//        array1.GetLength(0)!=array2.GetLength(0) || 
+//        array1.GetLength(1)!=array2.GetLength(1)) Console.WriteLine("The sizes of array aree not correctted");
+//        else {
+//         for (int i = 0; i < multiArray.GetLength(0); i++)
+//         {
+//             for (int j = 0; j < multiArray.GetLength(1); j++)
+//             {
+//                 multiArray[i,j] = array1[i,0] * array2[0,j];
+//                 for (int k = 1; k < multiArray.GetLength(1); k++)
+//                 {
+//                     multiArray[i,j] += array1[i,k]*array2[k,j];
+//                 }
+//             }
+//         }
+//        }
+//        return multiArray;
+// }
 
-Console.Write("Enter row's number of array 1: ");
-int rows1 = Convert.ToInt32(Console.ReadLine());
-Console.Write("Enter column's number of array 1: ");
-int cols1 = Convert.ToInt32(Console.ReadLine());
-Console.Write("Enter row's number of array 1: ");
-int rows2 = Convert.ToInt32(Console.ReadLine());
-Console.Write("Enter column's number of array 1: ");
-int cols2 = Convert.ToInt32(Console.ReadLine());
+// Console.Write("Enter row's number of array 1: ");
+// int rows1 = Convert.ToInt32(Console.ReadLine());
+// Console.Write("Enter column's number of array 1: ");
+// int cols1 = Convert.ToInt32(Console.ReadLine());
+// Console.Write("Enter row's number of array 1: ");
+// int rows2 = Convert.ToInt32(Console.ReadLine());
+// Console.Write("Enter column's number of array 1: ");
+// int cols2 = Convert.ToInt32(Console.ReadLine());
 
-int min = 1;
-int max = 9;
+// int min = 1;
+// int max = 9;
 
-int[,] array1 = CreateRandom2DArray(rows1, cols1, min, max);
-int[,] array2 = CreateRandom2DArray(rows2, cols2, min, max);
+// int[,] array1 = CreateRandom2DArray(rows1, cols1, min, max);
+// int[,] array2 = CreateRandom2DArray(rows2, cols2, min, max);
 
-int[,] multy2DArray = Multiply2DArray(array1, array2);
-Show2DArray(array1);
-Console.WriteLine();
-Show2DArray(array2);
-Console.WriteLine();
-Show2DArray(multy2DArray);
+// int[,] multy2DArray = Multiply2DArray(array1, array2);
+// Show2DArray(array1);
+// Console.WriteLine();
+// Show2DArray(array2);
+// Console.WriteLine();
+// Show2DArray(multy2DArray);
 
 /*
 Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся
@@ -191,7 +191,52 @@ Show2DArray(multy2DArray);
 */
 
 //===================== task 4 ===============================
+int[,,] Create3DArray(int rows, int cols, int deeps)
+{
+    int[,,]array = new int[rows, cols, deeps];
+    int count = 10;
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            for (int k = 0; k < deeps; k++)
+            {
+                array[i,j,k] += count;   
+                count+=2;   
+            }
+        }
+    }
+    return array;
+}
 
+void Show3DArray(int[,,] array){
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            for (int k = 0; k < array.GetLength(2); k++)
+            {
+                   Console.Write($"{array[i,j,k]}({j},{k},{i}) ");        
+            }
+            Console.WriteLine();
+        } 
+    }
+}
+
+
+
+
+int rows = 2;
+int cols = 2;
+int deeps = 2;
+int[,,] array = Create3DArray(rows, cols, deeps);
+Show3DArray(array);
+Console.WriteLine();
+//int[,] array1 = RefillArray(array);
+//Show2DArray(array1);
+//FindSimllar(array);
+// int[,] sortedArray = SortRowArray(array);
+// Show2DArray(sortedArray);
 
 /*
 Задача 62. Напишите программу, которая заполнит спирально 
@@ -202,3 +247,4 @@ Show2DArray(multy2DArray);
 11 16 15 06
 10 09 08 07
 */
+//===================== task 5 ===============================
