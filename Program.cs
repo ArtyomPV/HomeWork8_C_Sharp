@@ -191,47 +191,47 @@
 */
 
 //===================== task 4 ===============================
-int[,,] Create3DArray(int rows, int cols, int deeps)
-{
-    int[,,]array = new int[rows, cols, deeps];
-    int count = 10;
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < cols; j++)
-        {
-            for (int k = 0; k < deeps; k++)
-            {
-                array[i,j,k] += count;   
-                count+=2;   
-            }
-        }
-    }
-    return array;
-}
+// int[,,] Create3DArray(int rows, int cols, int deeps)
+// {
+//     int[,,]array = new int[rows, cols, deeps];
+//     int count = 10;
+//     for (int i = 0; i < rows; i++)
+//     {
+//         for (int j = 0; j < cols; j++)
+//         {
+//             for (int k = 0; k < deeps; k++)
+//             {
+//                 array[i,j,k] += count;   
+//                 count+=2;   
+//             }
+//         }
+//     }
+//     return array;
+// }
 
-void Show3DArray(int[,,] array){
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            for (int k = 0; k < array.GetLength(2); k++)
-            {
-                   Console.Write($"{array[i,j,k]}({j},{k},{i}) ");        
-            }
-            Console.WriteLine();
-        } 
-    }
-}
-
-
+// void Show3DArray(int[,,] array){
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             for (int k = 0; k < array.GetLength(2); k++)
+//             {
+//                    Console.Write($"{array[i,j,k]}({j},{k},{i}) ");        
+//             }
+//             Console.WriteLine();
+//         } 
+//     }
+// }
 
 
-int rows = 2;
-int cols = 2;
-int deeps = 2;
-int[,,] array = Create3DArray(rows, cols, deeps);
-Show3DArray(array);
-Console.WriteLine();
+
+
+// int rows = 2;
+// int cols = 2;
+// int deeps = 2;
+// int[,,] array = Create3DArray(rows, cols, deeps);
+// Show3DArray(array);
+// Console.WriteLine();
 //int[,] array1 = RefillArray(array);
 //Show2DArray(array1);
 //FindSimllar(array);
@@ -248,3 +248,56 @@ Console.WriteLine();
 10 09 08 07
 */
 //===================== task 5 ===============================
+int[,] Create2DSnailArray(int rows, int cols){
+    int[,] array = new int[rows,cols];
+    if(rows != cols || rows <2) {
+        Console.Write("Ряды  массива не равны столбцам массива!");
+        return array;
+    } else {
+        int k = 0;
+        int i = 0;
+        int j = 0;
+        int n = array.GetLength(0);
+        int value = 1;
+        while(n!=0){
+        for(k=0; k < n-1; k++){
+            array[i, j++] = value++;};
+        for(k=0; k < n-1; k++){
+            array[i++, j] = value++;};
+        for(k=0; k < n-1; k++){
+            array[i, j--] = value++;};
+        for(k=0; k < n-1; k++){
+            array[i--, j] = value++;};
+            i++;
+            j++;
+            n = n-2;
+            if(n == 1) {
+                array[i, j] = value;
+                return array; 
+            }
+        }
+        return array;
+    }    
+}
+
+
+void Show2DSnailArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if(array[i, j]<10) Console.Write($"0{array[i, j]} ");
+            else Console.Write(array[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+Console.Write("Введите количество рядов массива: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите количество столбцов массива: ");
+int cols = Convert.ToInt32(Console.ReadLine());
+
+int[,] array = Create2DSnailArray(rows, cols);
+Show2DSnailArray(array);
